@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
@@ -39,26 +39,26 @@ const { Dogs, Temperaments } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 const Dogs_Temperaments = sequelize.define('dogs_temperaments', {
-      breed_id: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        references: {
-          model: Dogs,
-          key: 'dog_id'
-        }
-      },
-      temperament_id: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        references: {
-          model: Temperaments,
-          key: 'temperament_id'
-        }
+    dog_id: {
+      // type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Dogs,
+        key: 'dog_id'
       }
-    }, {
-      timestamps: false
-    });
-
+    },
+    temperament_id: {
+      // type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Temperaments,
+        key: 'temperament_id'
+      }
+    }
+  }, { timestamps: false }
+);
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
