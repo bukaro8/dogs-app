@@ -48,15 +48,15 @@ module.exports = {
         })
         .catch(error => res.status(400).json(error))
         const dog = data.find(dog => dog.id === parseInt(id))
-        dog = {
-            dog_id: dog.id,
-            name: dog.name,
-            height: dog.height.metric,
-            weight: dog.weight.metric,
-            // img: b.image.url,
-            temperament: dog.temperament,
-            life_span: dog.life_span
-        }
+        // dog = {
+        //     dog_id: dog.id,
+        //     name: dog.name,
+        //     height: dog.height.metric,
+        //     weight: dog.weight.metric,
+        //     // img: b.image.url,
+        //     temperament: dog.temperament,
+        //     life_span: dog.life_span
+        // }
         return res.json(dog)
     }
 }
