@@ -46,13 +46,8 @@ module.exports = {
             `https://api.thedogapi.com/v1/breeds`,{
             headers: {'x-api-key': process.env.API_KEY}
         }).catch(error => res.status(400).json(error))
-        // try {
-        //     id = parseInt(id)
-        // } catch (error) {
-        //     res.status(400).json(error)
-        // }
         const dogFound = data.find(dog => dog.id === parseInt(id))
-        if (dogFound === undefined) return res.status(404).json({error: "The Dog doesn't exist"})
+        if (!dogFound) return res.status(404).json({error: "The Dog doesn't exist"})
         const dog = {
             dog_id: dogFound.id,
             name: dogFound.name,
