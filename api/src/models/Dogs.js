@@ -6,10 +6,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dogs', {
     dog_id: {
-      // type: DataTypes.UUID,
-      // defaultValue: DataTypes.UUIDV4,
-      type: DataTypes.INTEGER,
-      autoincrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      // type: DataTypes.INTEGER,
+      // autoincrement: true,
       allowNull: false,
       primaryKey: true,
       unique: true
@@ -36,6 +36,6 @@ module.exports = (sequelize) => {
     }
   }, {
     timestamps: false,
-    initialAutoIncrement: 265, // total breeds from dogs API
+    // initialAutoIncrement: 265, // total breeds from dogs API
   });
 };

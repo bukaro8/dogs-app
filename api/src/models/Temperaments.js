@@ -4,10 +4,10 @@ module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define('temperaments', {
         temperament_id: {
-            // type: DataTypes.UUID,
-            // defaultValue: DataTypes.UUIDV4,
-            type: DataTypes.INTEGER,
-            autoincrement: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            // type: DataTypes.INTEGER,
+            // autoincrement: true,
             allowNull: false,
             primaryKey: true,
             unique: true

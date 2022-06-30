@@ -40,8 +40,8 @@ const { Dogs, Temperaments } = sequelize.models;
 // Product.hasMany(Reviews);
 const Dogs_Temperaments = sequelize.define('dogs_temperaments', {
     dog_id: {
-      // type: DataTypes.UUID,
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      // type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: Dogs,
@@ -49,8 +49,8 @@ const Dogs_Temperaments = sequelize.define('dogs_temperaments', {
       }
     },
     temperament_id: {
-      // type: DataTypes.UUID,
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      // type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: Temperaments,
