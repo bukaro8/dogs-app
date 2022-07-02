@@ -5,6 +5,7 @@ const { Router } = require('express');
 const { getDogs } = require('../controllers/getDogs')
 const { getDogsByName } = require('../controllers/getDogsByName')
 const { getDogsById } = require('../controllers/getDogsById')
+const { postDog } = require('../controllers/postDog')
 
 const router = Router();
 
@@ -18,5 +19,7 @@ router.get('/dogs',(req,res) => {
 })
 
 router.get('/dogs/:id',getDogsById)
+
+router.post('/dog',(req,res) => postDog(req,res))
 
 module.exports = router;
