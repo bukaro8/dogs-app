@@ -1,0 +1,33 @@
+.input{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border:none;
+  /* width: 70%; */
+  font-size: 1.2rem;
+  background-color: transparent;
+}
+.input:focus {
+  outline: none;
+  
+}
+
+.inputLabel{
+  font-size: 1.2rem;
+  width: 8rem;
+
+}
+.inputContainer{
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  font-size: 1.6rem;
+  position: relative;
+  width: 25vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  /* background-color: aqua; */
+  /* border:1px solid red */
+}

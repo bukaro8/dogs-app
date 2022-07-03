@@ -1,0 +1,16 @@
+.picture1{
+  height: 20rem;
+  width: 30rem;
+  background-repeat: none;
+  background-size: cover;
+  background-position: center center;
+}
+.img{
+  height: 100%;
+  width: 100%;
+}
+.container{
+  background-color: #1f1b57;
+  height: 100vh;
+  padding-block-start: 4rem;
+}
