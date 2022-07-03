@@ -19,8 +19,8 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
       validate: {
-        is: /\p{L}/gi, // valida que sean solo letras
-        msg: "Nombre de raza no válido"
+        is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g,// /\p{L}/gi, // valida que sean solo letras y espacios
+        // msg: "Nombre de raza no válido"
       }
     },
     weight: {
