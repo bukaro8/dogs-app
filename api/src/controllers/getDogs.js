@@ -2,7 +2,7 @@ const URL = "https://api.thedogapi.com/v1/breeds";
 const axios = require("axios");
 
 exports.getDogs = async (req, res) => {
-    const { name } = req.query;
+    const { name, pagina } = req.query;
 
     if (name) {
         const { data } = await axios
@@ -44,5 +44,11 @@ exports.getDogs = async (req, res) => {
         };
     });
 
+    console.log(breeds.length);
+    if (pagina) {
+        const offset = pagina * 8;
+        const limit = offset + 8;
+        return res.status(200).send(breeds.slice(offset, limit));
+    }
     return res.status(200).send(breeds);
 };
