@@ -20,6 +20,6 @@ router.get('/dogs',(req,res) => {
 
 router.get('/dogs/:id',getDogsById)
 
-router.post('/dog',(req,res) => postDog(req,res))
+router.post('/dogs',(req,res) => postDog(req,res))
 
 module.exports = router;
