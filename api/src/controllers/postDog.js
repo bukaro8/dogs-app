@@ -18,14 +18,14 @@ exports.postDog = async (req,res) => {
         weight,
         height,
         life_span,
-    }).catch(error => res.status(500).json(error.parent.detail))
+    }).catch(error => res.status(500).json({error:error.parent.detail}))
     // let instances = []
     if (temperaments.length){
-        temperaments.map(async temperament => {
+        temperaments.foreach(async temperament => {
             temperament = temperament[0].toUpperCase() + temperament.slice(1).toLowerCase()
             const [t, created] = await Temperaments.findOrCreate({
                 where: {name: temperament}
-            }).catch(error => res.status(500).json(error))
+            }).catch(error => res.status(500).json({error:error.parent.detail}))
             // dog.setTemperaments(t) // borra las anteriores
             dog.addTemperaments(t)
         })
