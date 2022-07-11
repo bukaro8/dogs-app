@@ -8,10 +8,11 @@ import "./Home.css";
 function Home(props) {
     const [query, setQuery] = useState("");
     const [pagina, setPagina] = useState(0);
+    const [pesoRaza, setPesoRaza] = useState("");
 
     useEffect(() => {
-        props.getDogs(query, pagina);
-    }, [query, pagina]);
+        props.getDogs(query, pagina, pesoRaza);
+    }, [query, pagina, pesoRaza]);
 
     const handleChange = (q) => {
         setQuery(q);
@@ -19,6 +20,10 @@ function Home(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+    };
+
+    const handleChangePesoRaza = (seleccion) => {
+        setPesoRaza(seleccion);
     };
 
     return (
@@ -32,6 +37,28 @@ function Home(props) {
                     />
                 </form>
             </section>
+            <div>
+                <select
+                    name="ordenar_peso_raza"
+                    value={pesoRaza}
+                    onChange={handleChangePesoRaza}
+                >
+                    <option value="">Ordenar</option>
+                    <option value="peso_asc">Peso Ascendente</option>
+                    <option value="peso_desc">Peso Descendente</option>
+                    <option value="abc_asc">Alfebetico Ascendente</option>
+                    <option value="abc_desc">Alfabetico Descendente</option>
+                </select>
+                {/* <select name="ordenar_temperamento" id="temperamento">
+                    <option value="">Temperamento</option>
+                    <option value="dog">Peso Ascendente</option>
+                </select>
+                <select name="filtrar_raza" id="raza">
+                    <option value="">Raza</option>
+                    <option value="dog">Peso Ascendente</option>
+                </select> */}
+            </div>
+
             <div className="grid">
                 {props.dogs
                     ? props.dogs.map((d) => (
@@ -66,7 +93,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getDogs: (query, pagina) => dispatch(getDogs(query, pagina)),
+        getDogs: (query, pagina, pesoRaza) =>
+            dispatch(getDogs(query, pagina, pesoRaza)),
     };
 }
 
