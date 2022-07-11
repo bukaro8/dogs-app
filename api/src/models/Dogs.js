@@ -6,10 +6,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dogs', {
     dog_id: {
-      // type: DataTypes.UUID,
-      // defaultValue: DataTypes.UUIDV4,
-      type: DataTypes.INTEGER,
-      autoincrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      // type: DataTypes.INTEGER,
+      // autoincrement: true,
       allowNull: false,
       primaryKey: true,
       unique: true
@@ -19,8 +19,8 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
       validate: {
-        is: /\p{L}/gi, // valida que sean solo letras
-        msg: "Nombre de raza no válido"
+        is: /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g,// /\p{L}/gi, // valida que sean solo letras y espacios
+        // msg: "Nombre de raza no válido"
       }
     },
     weight: {
@@ -36,6 +36,6 @@ module.exports = (sequelize) => {
     }
   }, {
     timestamps: false,
-    initialAutoIncrement: 265, // total breeds from dogs API
+    // initialAutoIncrement: 265, // total breeds from dogs API
   });
 };

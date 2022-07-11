@@ -1,0 +1,40 @@
+
+const instance = require('./includes/axios')
+const { Dogs, Temperaments } = require('../db')
+
+exports.getDogs = async (req,res) => {
+    const { pagina } = req.query
+    const { data } = await instance.get('/breeds')
+    .catch(error => res.status(400).json(error))
+    let breeds = data.map((b,idx) => {
+        return {
+            dog_id: b.id,
+            name: b.name,
+            height: b.height.metric,
+            weight: b.weight.metric,
+            img: b.image.url,
+            temperament: b.temperament,
+            life_span: b.life_span
+        }
+    })
+    const dogs = await Dogs.findAll({ include: [Temperaments] }).catch(error => console.log(error))
+    if (dogs){
+        dogs.forEach(dog => {
+            breeds.push({
+                dog_id:dog.dog_id,
+                name:dog.name,
+                height:dog.height,
+                weight:dog.weight,
+                life_span:dog.life_span,
+                temperament:dog.temperaments.map(t => t.name).join(", ")
+            })
+        });
+    }
+    if (pagina) {
+        const nBreedsPerPage = 8
+        const offset = pagina * nBreedsPerPage;
+        const limit = offset + nBreedsPerPage;
+        return res.status(200).json(breeds.slice(offset, limit));
+    }
+    return res.json(breeds)
+}
