@@ -23,7 +23,7 @@ function Home(props) {
     };
 
     const handleChangePesoRaza = (seleccion) => {
-        setPesoRaza(seleccion);
+        setPesoRaza(seleccion.target.value);
     };
 
     return (
@@ -62,9 +62,8 @@ function Home(props) {
             <div className="grid">
                 {props.dogs
                     ? props.dogs.map((d) => (
-                          <div className="card">
+                          <div className="card" key={d.dog_id}>
                               <Card
-                                  key={d.dog_id}
                                   dog={d}
                                   detalle={query ? true : false}
                               />
