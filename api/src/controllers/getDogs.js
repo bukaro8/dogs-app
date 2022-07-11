@@ -3,6 +3,7 @@ const instance = require('./includes/axios')
 const { Dogs, Temperaments } = require('../db')
 
 exports.getDogs = async (req,res) => {
+    const { pagina } = req.query
     const { data } = await instance.get('/breeds')
     .catch(error => res.status(400).json(error))
     let breeds = data.map((b,idx) => {
@@ -28,6 +29,12 @@ exports.getDogs = async (req,res) => {
                 temperament:dog.temperaments.map(t => t.name).join(", ")
             })
         });
+    }
+    if (pagina) {
+        const nBreedsPerPage = 8
+        const offset = pagina * nBreedsPerPage;
+        const limit = offset + nBreedsPerPage;
+        return res.status(200).json(breeds.slice(offset, limit));
     }
     return res.json(breeds)
 }
