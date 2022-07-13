@@ -11,12 +11,13 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get('/dogs',(req,res) => {
-    if (req.query.name){
-        return getDogsByName(req,res)
-    }
-    return getDogs(req,res)
-})
+// router.get('/dogs',(req,res) => {
+//     if (req.query.name){
+//         return getDogsByName(req,res)
+//     }
+//     return getDogs(req,res)
+// })
+router.get('/dogs',getDogs)
 
 router.get('/dogs/:id',getDogsById)
 

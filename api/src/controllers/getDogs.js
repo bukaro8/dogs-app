@@ -3,7 +3,7 @@ const instance = require('./includes/axios')
 const { Dogs, Temperaments } = require('../db')
 
 exports.getDogs = async (req,res) => {
-    const { pagina, pesoRaza } = req.query
+    const { pagina, pesoRaza, name } = req.query
     const { data } = await instance.get('/breeds')
     .catch(error => res.status(400).json(error))
     let breeds = data.map((b,idx) => {
@@ -31,6 +31,9 @@ exports.getDogs = async (req,res) => {
                 temperament:dog.temperaments.map(t => t.name).join(", ")
             })
         });
+    }
+    if (name) {
+        breeds = breeds.filter(n => n.name.toLowerCase().includes(name.toLowerCase()));
     }
     if (pagina) {
         const nBreedsPerPage = 8
